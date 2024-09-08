@@ -478,6 +478,7 @@ def profile():
     if request.method == 'POST':
         allow_hentai = request.form.get('include_hentai')
         allow_hentai = True if allow_hentai == 'true' else False
+        print(allow_hentai)
 
         if request.form.get('user_ids', None) is not None:
             if session.get('new_user_id') is None:
@@ -634,7 +635,8 @@ def profile():
                 },
             }
                 
-            recommendations = recommend_animes(response_data, 0, allow_hentai)
+            recommendations = recommend_animes(response_data, None, allow_hentai)
+            print(recommendations)
     
             filtered_regular_recommendations = [
                 (anime_id, similarity) for anime_id, similarity in recommendations.get('regular', [])
