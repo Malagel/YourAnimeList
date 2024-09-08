@@ -1,21 +1,29 @@
+# Standard library imports
 import os
 import time
 import json
 import secrets
-import requests
-from datetime import datetime, timezone
 import re
 import urllib.parse
+from datetime import datetime, timezone
+import sqlite3
+
+# Third-party library imports
+import requests
+from dotenv import load_dotenv
+from flask import Flask, redirect, render_template, request, session, url_for, flash, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_session import Session
+
+# Application-specific imports
 from api_calls import get_user_data, get_anime_data, update_rating_status
 from recommendations_algorithm import recommend_animes
 from database_calls import most_watched_genres_and_themes, genres_and_themes_top_5, get_anime_information, get_all_anime
-from flask import Flask, redirect, render_template, request, session, url_for, flash, jsonify
-from werkzeug.security import generate_password_hash, check_password_hash
-import sqlite3
-from flask_session import Session
 
 # j+R6Nf@T8~n9Bsk
 # TestUser69
+
+load_dotenv()
 
 CLIENT_ID = '8a50535b5e02e804f3091bc31256c0c7'
 REDIRECT_URI = os.getenv('REDIRECT_URI')
