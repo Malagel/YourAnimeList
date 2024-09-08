@@ -18,8 +18,8 @@ from flask_session import Session
 # TestUser69
 
 CLIENT_ID = '8a50535b5e02e804f3091bc31256c0c7'
-REDIRECT_URI = 'http://127.0.0.1:5000/callback' 
-CLIENT_SECRET = 'e58ff00c00d10f7ee6884001dfbaf776e81271ea1f1e617de6b4876827eeca7b'
+REDIRECT_URI = os.getenv('REDIRECT_URI')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 TOKEN_URL = 'https://myanimelist.net/v1/oauth2/token'
 API_BASE_URL = 'https://api.myanimelist.net/v2/'
 
