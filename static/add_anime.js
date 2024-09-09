@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0; // Track current index for pagination
 
     const checkBox = document.getElementById('check-update');
+    const loadingOverlay = document.getElementById('loading-overlay');
 
     // Function to initialize sliders for the cards
     function initializeSliders(cards) {
@@ -35,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (form) {
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-
+                
+                loadingOverlay.style.display = 'flex';
                 const formData = new FormData();
 
                 // Add ratings, statuses, and IDs for both sidebar and search cards
@@ -74,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     console.log(`Success for ${formId}:`, data); // Debug log
+                    loadingOverlay.style.display = 'none';
                     window.location.reload(); // Reload the page to reflect changes
                 })
                 .catch(error => {

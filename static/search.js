@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('search-button');
     const animeContainer = document.getElementById('anime-container3');
     const checkAnimeList = document.getElementById('check-anime-list'); // Checkbox for search
+    const loadingOverlay = document.getElementById('loading-overlay');
 
     animeContainer.innerHTML = '<p id="empty_search">Search for something!</p>';
 
@@ -16,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const performSearch = async () => {
         const query = searchInput.value.trim();
         const checkListValue = checkAnimeList.checked ? 'on' : 'off'; // Get checkbox state
+
+        loadingOverlay.style.display = 'flex';
     
         try {
             const response = await fetch(`/search?q=${encodeURIComponent(query)}&check_list=${checkListValue}`);
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
             if (data.length === 0) {
                 animeContainer.innerHTML = '<p id="empty_search">No results found :(</p>';
+                loadingOverlay.style.display = 'none';
                 return;
             }
     
@@ -81,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
             // Notify add_anime.js of the new cards
             notifyAddAnime();
+
+            loadingOverlay.style.display = 'none';
             
         } catch (error) {
             console.error('Error fetching search results:', error);

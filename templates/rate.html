@@ -11,6 +11,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('index') }}">Go Back</a>
             </li>
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="spinner"></div>
+            </div> 
         </ul>
         <div class="form-check mr-sm-2">
             <input class="form-check-input" type="checkbox" id="check-update">
@@ -23,6 +26,7 @@
         <input type="text" id="search-bar" class="form-control mr-sm-2" placeholder="Search anime...">
         <button id="search-button" type="button">Search</button>
     </div>  
+
 </nav>
 
 {% endblock %}  

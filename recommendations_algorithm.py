@@ -109,14 +109,11 @@ def compute_user_preferences(user_preferences, db_path='database/animes.db'):
 def recommend_animes(user_data, recent_limit=None, hentai=False, top_n=64, db_path='database/animes.db'):
     # recent_limit is the limit of the data that will serve as input for the algorithm. if it's None, all data will be used.
     # top_n is the number of recommendations that will be returned
-    print("Hentai is:", hentai)
     excluded_anime_ids = get_anime_ids(user_data)
     excluded_anime_types = ['CM', 'PV', 'Music', 'Special', 'TV Special']
 
     user_preferences = get_user_data_preferences(user_data, db_path, recent_limit)
     genre_vector, theme_vector = compute_user_preferences(user_preferences, db_path)
-    print("Genre:", genre_vector)
-    print("Theme:", theme_vector)
 
     recommendations = []
     recommendations_movies = [] 

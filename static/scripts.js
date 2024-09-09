@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var swiperAnimeContainer = document.querySelector('#anime-container .swiper-container');
     var swiperAnimeWrapper = swiperAnimeContainer ? swiperAnimeContainer.querySelector('.swiper-wrapper') : null;
 
+    const loadingOverlay = document.getElementById('loading-overlay');
+
     if (swiperAnimeWrapper) {
         var swiperAnime = new Swiper(swiperAnimeContainer, {
             slidesPerView: 6, // Number of slides visible at once
@@ -79,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
             form.appendChild(hiddenInput);
         }
         hiddenInput.value = checkboxState;
+
+        loadingOverlay.style.display = 'flex';
     }
 
     // Add event listeners to all forms
