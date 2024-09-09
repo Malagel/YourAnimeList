@@ -84,7 +84,6 @@ def get_user_data_preferences(user_data, db_path='database/animes.db', recent_li
     else:
         user_preferences['year'] = None
 
-    print("User preferences", user_preferences)
     return user_preferences
 
 

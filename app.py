@@ -216,22 +216,15 @@ def rate():
     if request.method == 'POST':
         anime_ids = request.form.getlist('anime_ids')
         is_updated = request.form.get('check-update', 'unchecked') 
-        print("is updated:", is_updated)
 
-        print("Anime IDs:", anime_ids)
         for anime_id in anime_ids:
-            print("------------------------------------------------------")
             rating = request.form.get(f'rating-{anime_id}', None)
             status = request.form.get(f'status-{anime_id}', None)
-
-            print("Anime ID:", anime_id)
-            print("Rating:", rating)
-            print("Status:", status)       
+ 
             updated_at = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00') if is_updated == 'checked' else ''   
 
             if not anime_exists(anime_id, anime_list):
                 if rating and status:
-                    print("creating new anime", anime_id, rating, status)
                     update_rating_status(anime_id, rating, status)
 
                     anime_list.setdefault('completed', {'data': []})
@@ -241,7 +234,6 @@ def rate():
                     })
 
             elif rating and status:
-                print("updating rating and status", anime_id, rating, status)
                 update_rating_status(anime_id, rating, status)
 
                 for anime in anime_list['completed'].get('data', []):
@@ -252,7 +244,6 @@ def rate():
                         break
             
             elif rating and rating != '0':
-                print("updating just rating", anime_id, rating)
                 update_rating_status(anime_id, rating, 'completed')
 
                 for anime in anime_list['completed'].get('data', []):
