@@ -203,7 +203,7 @@ def rate():
 
     if request.method == 'GET':
         completed_animes = anime_list.get('completed', {}).get('data', [])
-        unrated_anime_ids = [anime['node']['id'] for anime in completed_animes if anime['list_status']['score'] == 0]
+        unrated_anime_ids = [anime['node']['id'] for anime in completed_animes if anime['list_status']['score'] == 0 and anime['list_status']['status'] == 'completed']
         
         tuples_list = [(anime_id, 0) for anime_id in unrated_anime_ids]
 
