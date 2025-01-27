@@ -183,4 +183,4 @@ custom_font.ttf
 
 flask_session
 .vscode
-.env
+.env    
