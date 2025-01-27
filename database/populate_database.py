@@ -6,6 +6,8 @@ import numpy as np
 conn = sqlite3.connect('animes.db')
 cursor = conn.cursor()
 
+input("You are about to modify the database. Press enter to create tables")
+
 def create_tables():
 
     # Creating Animes table
